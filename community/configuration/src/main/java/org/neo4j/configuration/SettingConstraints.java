@@ -31,6 +31,7 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.function.LongFunction;
+import java.util.logging.Logger;
 import java.util.regex.Pattern;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -121,7 +122,10 @@ public final class SettingConstraints {
                 }
 
                 if (maxValue.compareTo(value) < 0) {
-                    throw new IllegalArgumentException(format("maximum allowed value is %s", valueToString(maxValue)));
+//                    throw new IllegalArgumentException(format("maximum allowed value is %s", valueToString(maxValue)));
+                    Logger log = Logger.getGlobal();
+                    if (log == null) return;
+                    log.warning(format("maximum allowed value is %s - Not throwing exception", valueToString(maxValue)));
                 }
             }
 
